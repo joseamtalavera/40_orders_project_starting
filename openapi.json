@@ -1,0 +1,26 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Online Order API",
+    "version": "1.0.0",
+    "description": "A basic API to work with Swagger tools"
+  },
+  "paths": {
+    "/orders": {
+      "summary": "Get the order data",
+      "description": "This path is used to retrieve all the order data from the orders.json file"
+    },
+    "/neworder": {
+      "summary": "Add new order",
+      "description": "This path is used to add a new order to the orders.json file"
+    },
+    "/update/{id}": {
+      "summary": "Update the state of an order",
+      "description": "This path is used to change the status of an order matching the provided id. It modifies the state attribute of each order"
+    },
+    "/delete/{id}": {
+      "summary": "Delete an order",
+      "description": "This path is used to delete an order with a matching id"
+    }
+  }
+}
