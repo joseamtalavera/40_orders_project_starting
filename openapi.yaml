@@ -1,0 +1,140 @@
+openapi: 3.0.1
+info:
+  title: Online Order API
+  version: 1.0.0
+  description: A basic API to work with Swagger tools
+paths:
+  /orders:
+    summary: Get the order data
+    description: This path is used to retrieve all the order data from the orders.json file
+    get:
+      summary: Get the order data
+      description: This path is used to retrieve all the order data from the orders.json file
+      operationId: get_orders
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                orders:
+                  value: >-
+                    {"orders":[{"name":"Carey
+                    Maynard","id":"001","state":"pending"},{"name":"Angelo
+                    Ayala","id":"002","state":"canceled"},{"name":"Regina
+                    Yates","id":"003","state":"pending"},{"name":"Elliott
+                    Mcclure","id":"004","state":"pending"}]}
+      tags:
+        - Orders
+  /neworder:
+    summary: Add new order
+    description: This path is used to add a new order to the orders.json file
+    post:
+      summary: Add a new order
+      description: This path is used to add a new order to the orders.json file
+      operationId: new_order
+      requestBody:
+        description: A new order object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true      
+      responses:
+        '200':
+          description: Sucess
+          content:
+            application/json:
+              examples:
+                orders:
+                  value: Success
+        '400':
+          description: Invalid Argument Provided
+          content:
+            application/json:
+              examples:
+                orders:
+                  value: Invalid Argument Provided
+      tags:
+        - Orders
+      
+  /update/{id}:
+    summary: Update the state of an order
+    description: >-
+      This path is used to change the status of an order matching the provided
+      id. It modifies the state attribute of each order
+    put:
+      summary: Update the state of the order
+      description: >-
+        This operation updates the `state` of an order with a matching id from
+        the orders.json file.
+      operationId: update_order
+      parameters:
+        - name: id
+          in: path
+          description: 'The id of the order.'
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A state string
+        content:
+          application/jason:
+            schema:
+              type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Message:
+                  value: Success
+          description: Sucess
+        '400':
+          content:
+            application/json:
+              examples:
+                Error:
+                  value: Invalid Argument
+          description: Invalid Argument Provided 
+      tags:
+        - Orders
+  /delete/{id}:
+    summary: Delete an order
+    description: >-
+      This path is used to delete an order with a matching id from the
+      orders.json file.
+    delete:
+      summary: Deletes an order
+      description: This path is used to delete an order with a matching id from the orders.json file
+      operationId: delete_orders
+      parameters:
+        - name: id
+          in: path
+          description: 'The id of the order.'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Message:
+                  value: Success
+          description: Sucess
+      tags:
+        - Orders
+components:
+        schemas:
+          Order:
+            type: object
+            properties:
+              name:
+                type: string
+              id:
+                type: string
+              state:
+                type: string
+            xml:
+                name: Order
