@@ -26,21 +26,45 @@ server.post('/neworder', express.json(), (request,response)=>{
 
 
 // /update/:id code 
-server.put('/update/:id', express.text({type:'*/*'}),(request, response)=>{
-      var items = orderData.orders
+// server.put('/update/:id', express.text({type:'*/*'}),(request, response)=>{
 
-      items.forEach(function(o){
-            console.log(o)
-            if(o.id == request.params.id){
-                  console.log('Modifying order!')
-                  o.state = request.body;
-            }
+//       var items = orderData.orders
+
+//       items.forEach(function(o){
+//             console.log(o)
+//             if(o.id == request.params.id){
+//                   console.log('Modifying order!')
+//                   o.state = request.body;
+//             }
+//       });
+//       fs.writeFileSync('orders.json', JSON.stringify(orderData));
+
+//       response.send("Success");
+//       console.log("Success");
+// });
+
+// update/:id - name -
+server.put('/update/:id', express.json(), (request, response) => {
+      var items = orderData.orders;
+  
+      items.forEach(function(o) {
+          if (o.id === request.params.id) {
+              console.log('Modifying order!');
+              // Update specific fields from the request body
+              if (request.body.name) {
+                  o.name = request.body.name;
+              }
+              if (request.body.state) {
+                  o.state = request.body.state;
+              }
+          }
       });
-      fs.writeFileSync('./order.json', JSON.stringify(orderData));
-
-      response.send('Success');
-      console.log('Success');
-});
+      fs.writeFileSync('orders.json', JSON.stringify(orderData));
+  
+      response.send("Success");
+      console.log("Success");
+  });
+  
 
 // /delete/:id code
 server.delete('/delete/:id', (request, response)=>{
@@ -58,7 +82,7 @@ server.delete('/delete/:id', (request, response)=>{
       fs.writeFileSync('orders.json', JSON.stringify(newData));
       response.send('Success');
       console.log('Success');
-})
+});
 
 
 server.listen(3000,()=>{

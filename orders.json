@@ -1,1 +1,1 @@
-{"orders":[{"name":"Carey Maynard","id":"001","state":"pending"},{"name":"Angelo Ayala","id":"002","state":"canceled"},{"name":"Regina Yates","id":"003","state":"pending"},{"name":"Elliott Mcclure","id":"004","state":"pending"}]}
+{"orders":[{"name":"Jose AM Talavera","id":"001","state":"{ \"name\": \"Jose AM Talavera\" }\n"},{"name":"Angelo Ayala","id":"002","state":"canceled"},{"name":"Regina Yates","id":"003","state":"pending"},{"name":"Elliott Mcclure","id":"004","state":"pending"}]}
